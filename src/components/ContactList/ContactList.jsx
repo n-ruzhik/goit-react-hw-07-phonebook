@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getContacts, getFilterByQuery } from '../../redux/selectors';
+import { selectContacts, selectFilterByQuery } from '../../redux/selectors';
 import ContactItem from '../ContactItem';
 import css from './ContactList.module.css';
 
@@ -10,8 +10,8 @@ const getVisibleContacts = (contacts, query) => {
 };
 
 const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const query = useSelector(getFilterByQuery);
+  const contacts = useSelector(selectContacts);
+  const query = useSelector(selectFilterByQuery);
   const visibleContacts = getVisibleContacts(contacts, query);
 
   return (

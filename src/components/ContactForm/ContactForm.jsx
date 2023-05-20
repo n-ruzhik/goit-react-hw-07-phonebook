@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
-import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 import Notiflix from 'notiflix';
 
 export default function ContactForm() {
@@ -10,7 +10,7 @@ export default function ContactForm() {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const duplicationNameCheck = newName => {
     return contacts.find(({ name }) => name === newName);
@@ -41,7 +41,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     if (duplicationNameCheck(name) || duplicationNumberCheck(number)) {
-      Notiflix.Notify.failure(`This number is already in Сontacts`);
+      Notiflix.Notify.failure(`This contact is already in List`);
       return;
     }
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { updatedFilter } from '../../redux/filterSlice';
-import { getFilterByQuery } from '../../redux/selectors';
+import { selectFilterByQuery } from '../../redux/selectors';
 import css from './Filter.module.css';
 
 const Filter = () => {
@@ -9,7 +9,7 @@ const Filter = () => {
   const onFilter = event => {
     dispatch(updatedFilter(event.currentTarget.value));
   };
-  const value = useSelector(getFilterByQuery);
+  const value = useSelector(selectFilterByQuery);
 
   return (
     <div className={css.filterField}>
