@@ -3,7 +3,7 @@ import { selectContacts, selectFilterByQuery } from '../../redux/selectors';
 import ContactItem from '../ContactItem';
 import css from './ContactList.module.css';
 
-const getVisibleContacts = (contacts, query) => {
+const selectVisibleContacts = (contacts, query) => {
   return contacts.filter(({ name }) =>
     name.toLowerCase().includes(query.toLowerCase())
   );
@@ -12,7 +12,7 @@ const getVisibleContacts = (contacts, query) => {
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const query = useSelector(selectFilterByQuery);
-  const visibleContacts = getVisibleContacts(contacts, query);
+  const visibleContacts = selectVisibleContacts(contacts, query);
 
   return (
     <ul className={css.list}>
